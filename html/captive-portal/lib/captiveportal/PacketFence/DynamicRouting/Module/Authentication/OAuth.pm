@@ -59,6 +59,8 @@ sub get_client {
         token_scheme => $self->token_scheme, 
         $source->additional_client_attributes,
     );
+    get_logger->info(sub { use Data::Dumper; "additional_clien_attributes ".Dumper(%info) });
+
     return Net::OAuth2::Profile::WebServer->new(%info);
 }
 
