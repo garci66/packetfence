@@ -14,7 +14,9 @@ Architecture: all
 Pre-Depends:  ca-certificates, 
  dhcp3-server | isc-dhcp-server, ca-certificates, winbind,
  packetfence-pfcmd-suid (>= ${source:Version}), packetfence-config (>= ${source:Version}), packetfence-ntlm-wrapper (>= ${source:Version}), packetfence-doc (>= ${source:Version}),
- fingerbank (>= 3.1.0), packetfence-redis-cache (>= ${source:Version}), packetfence-golang-daemon (>= ${source:Version}),
+# CAUTION: we need to require the version we want for Fingerbank and ensure we don't want anything equal or above the next major release as it can add breaking changes
+ fingerbank (>= 3.1.1), fingerbank (<< 4.0.0),
+ packetfence-redis-cache (>= ${source:Version}), packetfence-golang-daemon (>= ${source:Version}),
 # wmi
  libnet-wmiclient-perl, libwmiclient1, wmi-client,
 Breaks: libdata-alias-perl
@@ -30,6 +32,8 @@ Depends: ${misc:Depends}, vlan,
 # freeradius
  freeradius (>= 3.0.15.6), freeradius-ldap, 
  freeradius-mysql, freeradius-utils, freeradius-rest, freeradius-redis,
+# systemd sd_notify support
+ libsystemd-daemon-perl,
 # binary
  make,
  samba,
@@ -76,9 +80,9 @@ Depends: ${misc:Depends}, vlan,
 # see #1313: Port our Net-Appliance-Session to the version 3 API
 # http://packetfence.org/bugs/view.php?id=1313
  libnet-appliance-session-perl (>= 2.111080),
- libnet-ssh2-perl,
+ libnet-ssh2-perl (>= 0.63),
  libnet-cli-interact-perl,
- libnet-interface-perl, libnet-radius-perl,
+ libnet-interface-perl, libnet-radius-perl, libclass-xsaccessor-perl,
  libparse-nessus-nbe-perl, libtest-mockdbi-perl,
  libsoap-lite-perl (>= 1.0), libnet-frame-perl, libthread-pool-perl,
  libwww-curl-perl, libposix-2008-perl, libdata-messagepack-stream-perl, libdata-messagepack-perl,
@@ -100,6 +104,7 @@ Depends: ${misc:Depends}, vlan,
  libchi-driver-redis-perl,
  libredis-fast-perl,
  libcache-fastmmap-perl, libterm-size-any-perl,
+ libswitch-perl,
 # packaging workaround (we don't require it but something in catalyst seem to do)
  libmodule-install-perl,
 # i18n

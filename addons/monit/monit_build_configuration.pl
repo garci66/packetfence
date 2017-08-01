@@ -6,6 +6,7 @@ use warnings;
 use File::Copy;
 use File::Spec::Functions;
 use Template;
+use List::MoreUtils qw(any);
 
 BEGIN {
     use lib "/usr/local/pf/lib";
@@ -44,7 +45,7 @@ if ( $#ARGV eq "-1" ) {
     print "  - active-active: Will add some checks for active-active clustering related services\n";
     print "  - os-winbind: Will add a check for the operating system winbindd process. Use it when the winbind/samba configuration is made outside PacketFence\n";
     print "  - os-checks: Will add some OS best-practices checks\n";
-    print "mailserver: IP or resolvable FQDN of the mail server to use to send alerts (optional)";
+    print "mailserver: IP or resolvable FQDN of the mail server to use to send alerts (optional)\n";
     die "\n";
 }
 
@@ -157,6 +158,7 @@ sub generate_specific_configurations {
             MAIL_BIN            => $mail_bin,
             SERVICE_BIN         => $service_bin,
             WINBINDD_PID        => $winbindd_pid,
+            ACTIVE_ACTIVE       => (any { $_ eq 'active-active' } @configurations),
         };
         $tt->process($template_file, $vars, $destination_file) or die $tt->error();
     }

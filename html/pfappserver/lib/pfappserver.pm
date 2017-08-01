@@ -69,7 +69,7 @@ __PACKAGE__->config(
     },
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
-    'static' => {
+    'Plugin::Static::Simple' => {
         mime_types => {
             woff => 'font/woff'
         },
@@ -293,8 +293,7 @@ sub pf_localize {
     unless ($ref_type) {
         @args = ($msg);
     } else {
-        my $text = shift @$msg;
-        @args = ($text,$msg);
+        @args = @$msg;
     }
     return $c->localize(@args);
 }

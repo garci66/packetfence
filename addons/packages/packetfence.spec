@@ -157,7 +157,7 @@ Requires: perl(Net::Cisco::MSE::REST)
 # Net::Appliance::Session specific version added because newer versions broke API compatibility (#1312)
 # We would need to port to the new 3.x API (tracked by #1313)
 Requires: perl(Net::Appliance::Session) = 1.36
-Requires: perl(Net::SSH2)
+Requires: perl(Net::SSH2) >= 0.63
 Requires: perl(Net::OAuth2) >= 0.57
 # Required by configurator script, pf::config
 Requires: perl(Net::Interface)
@@ -168,6 +168,8 @@ Requires: perl(Net::Pcap) >= 0.16
 Requires: perl(NetPacket) >= 1.2.0
 # pfdns
 Requires: perl(Net::DNS), perl(Net::DNS::Nameserver), perl(Module::Metadata)
+# systemd sd_notify support
+Requires: perl(Systemd::Daemon)
 # RADIUS CoA support
 Requires: perl(Net::Radius::Dictionary), perl(Net::Radius::Packet)
 # SNMP to network hardware
@@ -275,6 +277,7 @@ Requires: perl(Time::Piece)
 Requires: perl(Number::Range)
 Requires: perl(Algorithm::Combinatorics)
 Requires: perl(Net::Syslog)
+Requires: perl(Class::XSAccessor)
 Requires: iproute >= 3.0.0, krb5-workstation
 Requires: samba >= 4
 Requires: perl(Linux::Distribution)
@@ -295,7 +298,7 @@ Requires: graphite-web >= 0.9.12-25
 Requires: samba-winbind-clients, samba-winbind
 Requires: collectd >= 5.6, collectd-apache, collectd-openldap, collectd-redis, collectd-mysql, collectd-disk
 Obsoletes: collectd-drbd
-Requires: nodejs
+Requires: nodejs >= 6.11.0
 
 # pki
 Requires: perl(Crypt::SMIME)
@@ -315,7 +318,8 @@ Requires: perl(Net::UDP)
 Requires: %{real_name}-config = %{version}
 Requires: %{real_name}-pfcmd-suid = %{version}
 Requires: haproxy >= 1.6, keepalived >= 1.2
-Requires: fingerbank >= 3.1.0
+# CAUTION: we need to require the version we want for Fingerbank and ensure we don't want anything equal or above the next major release as it can add breaking changes
+Requires: fingerbank >= 3.1.1, fingerbank < 4.0.0
 Requires: perl(File::Tempdir)
 
 %description -n %{real_name}
@@ -398,12 +402,13 @@ done
     asciidoc -a docinfo2 -b docbook -d book \
         -o docs/docbook/$GUIDE.docbook \
         docs/$GUIDE.asciidoc
+    xsltproc -o docs/docbook/$GUIDE.fo \
+        docs/docbook/xsl/packetfence-fo.xsl \
+        docs/docbook/$GUIDE.docbook
     fop -c docs/fonts/fop-config.xml \
-        -xml docs/docbook/$GUIDE.docbook \
-        -xsl docs/docbook/xsl/packetfence-fo.xsl \
+        docs/docbook/$GUIDE.fo \
         -pdf docs/$GUIDE.pdf
     done
-    
 %endif
 
 # Build the HTML doc for pfappserver
@@ -519,6 +524,7 @@ cp addons/*.pl $RPM_BUILD_ROOT/usr/local/pf/addons/
 cp addons/*.sh $RPM_BUILD_ROOT/usr/local/pf/addons/
 %{__install} -D packetfence.logrotate $RPM_BUILD_ROOT/etc/logrotate.d/packetfence
 %{__install} -D packetfence.rsyslog $RPM_BUILD_ROOT/etc/rsyslog.d/packetfence.conf
+%{__install} -D packetfence.journald $RPM_BUILD_ROOT/usr/lib/systemd/journald.conf.d/01-packetfence.conf
 cp -r sbin $RPM_BUILD_ROOT/usr/local/pf/
 cp -r conf $RPM_BUILD_ROOT/usr/local/pf/
 cp -r raddb $RPM_BUILD_ROOT/usr/local/pf/
@@ -584,9 +590,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre -n %{real_name}
 
+/usr/bin/systemctl --now mask mariadb
 # clean up the old systemd files if it's an upgrade
 if [ "$1" = "2"   ]; then
-    /usr/bin/systemctl disable mariadb
     /usr/bin/systemctl disable packetfence-redis-cache
     /usr/bin/systemctl disable packetfence-config
     /usr/bin/systemctl disable packetfence.service
@@ -638,11 +644,6 @@ fi
 %post -n %{real_name}
 
 /usr/bin/mkdir -p /var/log/journal/
-/usr/bin/mkdir -p /usr/lib/systemd/journald.conf.d
-echo "[Journal]" > /usr/lib/systemd/journald.conf.d/01-packetfence.conf
-echo "RateLimitInterval=0" >> /usr/lib/systemd/journald.conf.d/01-packetfence.conf
-echo "RateLimitBurst=0" >> /usr/lib/systemd/journald.conf.d/01-packetfence.conf
-echo "ForwardToWall=no" >> /usr/lib/systemd/journald.conf.d/01-packetfence.conf
 echo "Restarting journald to enable persistent logging"
 /bin/systemctl restart systemd-journald
 
@@ -667,13 +668,8 @@ echo "Restarting rsyslogd"
 /bin/systemctl restart rsyslog
 
 #Make ssl certificate
-if [ ! -f /usr/local/pf/conf/ssl/server.crt ]; then
-    openssl req -x509 -new -nodes -days 365 -batch\
-    	-out /usr/local/pf/conf/ssl/server.crt\
-    	-keyout /usr/local/pf/conf/ssl/server.key\
-    	-nodes -config /usr/local/pf/conf/openssl.cnf
-    cat /usr/local/pf/conf/ssl/server.crt /usr/local/pf/conf/ssl/server.key > /usr/local/pf/conf/ssl/server.pem
-fi
+cd /usr/local/pf
+make conf/ssl/server.pem
 
 # Create OMAPI key
 if [ ! -f /usr/local/pf/conf/pf_omapi_key ]; then
@@ -740,10 +736,11 @@ rm -rf /usr/local/pf/var/cache/
 /bin/systemctl enable packetfence-mariadb
 /bin/systemctl enable packetfence-redis-cache
 /bin/systemctl enable packetfence-config
-/bin/systemctl enable packetfence-iptables
+/bin/systemctl disable packetfence-iptables
 /bin/systemctl enable packetfence-routes
 /bin/systemctl isolate packetfence-base
 /bin/systemctl enable packetfence-httpd.admin
+/bin/systemctl enable packetfence-iptables
 
 /usr/local/pf/bin/pfcmd configreload
 /bin/systemctl start packetfence-httpd.admin
@@ -818,6 +815,7 @@ fi
 
 %exclude                /usr/lib/systemd/system/packetfence-config.service
 %attr(0644, root, root) /usr/lib/systemd/system/packetfence-*.service
+%attr(0644, root, root) /usr/lib/systemd/journald.conf.d/01-packetfence.conf
 
 %dir %attr(0750, root,root) /etc/systemd/system/packetfence*target.wants
 %dir %attr(0750,root,root) %{_sysconfdir}/sudoers.d
@@ -1133,8 +1131,7 @@ fi
                         /usr/local/pf/html/captive-portal/content/packetfence-windows-agent.exe
 %dir                    /usr/local/pf/html/captive-portal/content/images
                         /usr/local/pf/html/captive-portal/content/images/*
-%dir			/usr/local/pf/html/common/scss/
-                        /usr/local/pf/html/common/scss/*.scss
+%config(noreplace)      /usr/local/pf/html/common/scss/*.scss
 %dir                    /usr/local/pf/html/captive-portal/lib
      
                         /usr/local/pf/html/captive-portal/lib/*
@@ -1313,6 +1310,12 @@ fi
 %exclude                /usr/local/pf/addons/pfconfig/pfconfig.init
 
 %changelog
+* Tue Jul 11 2017 Inverse <info@inverse.ca> - 7.2.0-2
+- Fix a GID permissions issue with MariaDB
+
+* Mon Jul 10 2017 Inverse <info@inverse.ca> - 7.2.0-1
+- New release 7.2.0
+
 * Thu Jun  1 2017 Inverse <info@inverse.ca> - 7.1.0-1
 - New release 7.1.0
 

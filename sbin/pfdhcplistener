@@ -22,6 +22,7 @@ use Net::Pcap 0.16;
 use Pod::Usage;
 use POSIX qw(:signal_h pause :sys_wait_h SIG_BLOCK SIG_UNBLOCK);
 use Fcntl qw(:flock);
+use Systemd::Daemon qw{ -soft };
 
 BEGIN {
     # log4perl init
@@ -95,27 +96,21 @@ my $interface_ip;
 my $interface_vlan;
 my $pcap;
 my $net_type;
-my $process;
+my $process_broadcast;
 my $interface;
 
 my $rate_limit_hash = {};
 my $rate_limit_cache = CHI->new( driver => 'Memory', datastore => $rate_limit_hash );
 
 sub reload_config {
-    if ( $net_type eq "internal" ) { 
-        $process = $TRUE;
-    }
-    elsif ( pf::cluster::is_vip_running($interface) ) { 
-        $process = $TRUE;
-    }
-    elsif ( !$pf::cluster::cluster_enabled ) { 
-        $process = $TRUE;
-    }
-    else { 
-        $process = $FALSE;
-    }
+    # reload the defaults every time
+    $process_broadcast = $TRUE;
 
-    $logger->info("Reload configuration on $interface with status $process");
+    # We do not process broadcast on the node which does not hold the VIP
+    if ( $pf::cluster::cluster_enabled && ! pf::cluster::is_vip_running($interface) ) { 
+        $process_broadcast = $FALSE;
+    }
+    $logger->info("Reload configuration on $interface");
 }
 
 my $pidfile = "${var_dir}/run/$PROGRAM_NAME.pid";
@@ -135,6 +130,7 @@ my $net_addr;
 
 # start dhcp monitor
 if ( isenabled( $Config{'network'}{'dhcpdetector'} ) ) {
+    Systemd::Daemon::notify( READY => 1, STATUS => "Ready", unset => 1 );
     start();
     cleanup();
 }
@@ -142,6 +138,7 @@ if ( isenabled( $Config{'network'}{'dhcpdetector'} ) ) {
 END {
     if (!$args{h} && $HAS_LOCK) {
         unless ($IS_CHILD) {
+            Systemd::Daemon::notify( STOPPING => 1 );
             deletepid();
             $logger->info("stopping pfdhcplistener");
         }
@@ -216,10 +213,15 @@ sub setup_pcap {
 
 sub process_pkt {
     my ( $user_data, $hdr, $pkt ) = @_;
-    if ($process){
         eval {
             my $l2 = NetPacket::Ethernet->decode($pkt);
 
+            if ( ! $process_broadcast ) { 
+                if ( $l2->{'dest_mac'} eq 'ffffffffffff' ) { 
+                    $logger->trace("Skipping broadcast request.");
+                    return;
+                } 
+            }       
             # Skip frames that has a VLAN tag to avoid processing frames more than
             # once when pfdhcplistener listens on both a vlan interface and its parent
             #
@@ -362,7 +364,7 @@ sub process_pkt {
         if($@) {
             $logger->error("Error processing packet: $@");
         }
-    }
+    
     #reload all cached configs after each iteration
     pf::CHI::Request::clear_all();
     #Only perform stats when in debug mode

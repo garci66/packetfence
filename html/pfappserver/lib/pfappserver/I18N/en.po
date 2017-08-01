@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 7.0.0\n"
+"Project-Id-Version: 7.1.0\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2017-04-19 11:56-0400\n"
+"PO-Revision-Date: 2017-06-14 14:37-0400\n"
 "Last-Translator: Inverse inc. <info@inverse.ca>\n"
 "Language-Team: English\n"
 "Language: en\n"
@@ -124,6 +124,7 @@ msgstr "Admin Roles - Update"
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
@@ -159,6 +160,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "API Token Path"
@@ -166,6 +168,7 @@ msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "API URL"
@@ -174,6 +177,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "API URL of logged user"
@@ -564,10 +568,6 @@ msgid "Administration"
 msgstr ""
 
 # html/pfappserver/root/admin/wrapper.tt
-msgid "Administration Guide"
-msgstr ""
-
-# html/pfappserver/root/admin/wrapper.tt
 # html/pfappserver/root/configurator/admin.tt
 msgid "Administrator"
 msgstr ""
@@ -663,9 +663,11 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SMS.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SponsorEmail.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twilio.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "Amount of logins for the local account"
 msgstr ""
@@ -736,6 +738,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Facebook.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 msgid "App ID"
 msgstr ""
@@ -743,6 +746,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Facebook.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 msgid "App Secret"
 msgstr ""
@@ -857,6 +861,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Paypal.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Stripe.pm
@@ -1211,6 +1216,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Checkpoint.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/FortiGate.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Iboss.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/PaloAlto.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/WatchGuard.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Provisioning.pm
@@ -1219,6 +1225,7 @@ msgstr ""
 msgid "Click to add a role"
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/Pf.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Provisioning.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan.pm
 msgid "Click to add an OS"
@@ -1364,10 +1371,6 @@ msgstr ""
 msgid "Cluster:"
 msgstr ""
 
-# html/pfappserver/root/admin/wrapper.tt
-msgid "Clustering Quick Installation Guide"
-msgstr ""
-
 # html/pfappserver/lib/pfappserver/Form/Config/Switch.pm
 msgid "CoA Port"
 msgstr ""
@@ -1412,20 +1415,6 @@ msgstr ""
 msgid "Comma separated list of VLANs. If the port is a multi-vlan, these are the VLANs that have to be tagged on the port."
 msgstr ""
 
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/AuthorizeNet.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Facebook.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Paypal.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Stripe.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
-# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
-msgid "Comma separated list of domains that will be resolve with the correct IP addresses."
-msgstr ""
-
 # html/pfappserver/root/configurator/configuration.tt
 msgid "Comma-delimited list of DHCP servers in your production environment."
 msgstr ""
@@ -1456,6 +1445,21 @@ msgstr ""
 
 # conf/documentation.conf (fencing.interception_proxy_port)
 msgid "Comma-delimited list of port used by proxy interception."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/AuthorizeNet.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Facebook.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Paypal.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Stripe.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
+msgid "Comma-separated list of domains that will be resolved with the correct IP addresses."
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Switch.pm
@@ -1650,9 +1654,11 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SMS.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SponsorEmail.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twilio.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "Create Local Account"
 msgstr ""
@@ -1679,6 +1685,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "Create a local account on the PacketFence system based on the account email address provided."
@@ -1690,6 +1697,7 @@ msgid "Create a local account on the PacketFence system based on the email addre
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SMS.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twilio.pm
 msgid "Create a local account on the PacketFence system based on the phone number provided."
 msgstr ""
 
@@ -1869,7 +1877,7 @@ msgid "DNS name of the domain"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
-msgid "DNS server"
+msgid "DNS server(s)"
 msgstr ""
 
 # pf::admin_roles (Actions groups)
@@ -1983,6 +1991,10 @@ msgstr ""
 
 # conf/documentation.conf (active_active.galera_replication_username)
 msgid "Defines the replication username to be used for the MariaDB Galera cluster replication"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/PortalModule/Authentication/Sponsor.pm
+msgid "Defines the sponsor email used. Leave empty so that the user has to specify a sponsor."
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/PortalModule/Authentication/Password.pm
@@ -2300,6 +2312,10 @@ msgstr ""
 msgid "Different access level can be defined for the PacketFence administrative interface from this module."
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Direct Base url"
+msgstr ""
+
 # conf/documentation.conf (advanced.disable_pf_domain_auth)
 msgid "Disable Active-Directory domain configuration from within PacketFence"
 msgstr ""
@@ -2328,6 +2344,10 @@ msgstr ""
 # html/pfappserver/root/dhcpoption82/index.tt
 # html/pfappserver/root/per_page_select.tt
 msgid "Display %1 entries per page"
+msgstr ""
+
+# html/pfappserver/root/admin/help.tt
+msgid "Documentation"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Realm.pm
@@ -2529,6 +2549,10 @@ msgstr ""
 
 # conf/documentation.conf (advanced.ntlm_redis_cache)
 msgid "Enables a Redis driven cache for NTLM authentication. In order for this to work, you need to setup proper NT hash syncronization between your PacketFence server and your AD.Refer to the Administration guide for more details.Applying this requires a restart of radiusd."
+msgstr ""
+
+# html/pfappserver/root/config/pfmon/index.tt
+msgid "Enabling or disabling a task as well as modifying its interval requires a restart of pfmon to be fully effective"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/HTTP.pm
@@ -2855,6 +2879,10 @@ msgstr ""
 msgid "Force the captive portal to use HTTPS for all portal clients.Note that clients will be forced to use HTTPS on all URLs.This requires a restart of the httpd.portal process to be fully effective."
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/PortalModule/Authentication/Sponsor.pm
+msgid "Forced Sponsor"
+msgstr ""
+
 # html/pfappserver/lib/pfappserver/Form/Node.pm
 msgid "Fully qualified device name"
 msgstr ""
@@ -2960,6 +2988,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Checkpoint.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/FortiGate.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Iboss.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/PaloAlto.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/WatchGuard.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan/Nessus.pm
@@ -3177,6 +3206,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Checkpoint.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/FortiGate.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Iboss.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/WatchGuard.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan/Nessus.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan/Nessus6.pm
@@ -3194,6 +3224,10 @@ msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SAML.pm
 msgid "If your Identity Provider uses a self-signed certificate, put the path to its certificate here instead."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Iframe Base url"
 msgstr ""
 
 # html/pfappserver/root/node/create.tt
@@ -3237,6 +3271,10 @@ msgstr ""
 msgid "Integration"
 msgstr ""
 
+# html/pfappserver/root/admin/help.tt
+msgid "Integration Guides"
+msgstr ""
+
 # html/pfappserver/root/interface/index.tt
 msgid "Interfaces & Networks"
 msgstr ""
@@ -3263,6 +3301,10 @@ msgstr ""
 
 # html/pfappserver/lib/pfappserver/PacketFence/Controller/Admin.pm
 msgid "Invalid challenge."
+msgstr ""
+
+# html/pfappserver/root/config/switch/view.tt
+msgid "Invalidate cache"
 msgstr ""
 
 # html/pfappserver/root/node/tab_WMI_process.tt
@@ -3390,6 +3432,10 @@ msgstr ""
 
 # conf/documentation.conf (guests_admin_registration.access_duration_choices)
 msgid "List of all the choices offered in the access duration action of an authentication source."
+msgstr ""
+
+# conf/documentation.conf (device_registration.allowed_devices)
+msgid "List of allowed devices to be registered via the device registration page. If none are specified, ALL devices will be allowed."
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SMS.pm
@@ -3666,6 +3712,14 @@ msgstr ""
 msgid "MD5 hash"
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "MKEY for Mirapay Direct"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "MKEY for the iframe"
+msgstr ""
+
 # conf/documentation.conf (radius_authentication_methods.eap_authentication_types options)
 msgid "MSCHAPv2"
 msgstr ""
@@ -3746,6 +3800,10 @@ msgstr ""
 
 # html/pfappserver/root/config/switch/view.tt
 msgid "Members can be added after the switch group is saved"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Merchant ID"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/PortalModule/Message.pm
@@ -3905,10 +3963,6 @@ msgstr ""
 msgid "Network Configuration"
 msgstr ""
 
-# html/pfappserver/root/admin/wrapper.tt
-msgid "Network Devices Configuration Guide"
-msgstr ""
-
 # html/pfappserver/root/configurator/networks.tt
 msgid "Network Interfaces"
 msgstr ""
@@ -4056,7 +4110,7 @@ msgid "New portal module"
 msgstr ""
 
 # html/pfappserver/root/config/portal_module/view.tt
-msgid "No ' _ field _ ' selected"
+msgid "No ' _ l(field) _ ' selected"
 msgstr ""
 
 # html/pfappserver/root/config/fingerbank/device/upstream/index.tt
@@ -4192,6 +4246,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Checkpoint.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/FortiGate.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Iboss.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/PaloAlto.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/WatchGuard.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Provisioning.pm
@@ -4447,6 +4502,10 @@ msgstr ""
 msgid "Organizational unit for the certificate"
 msgstr ""
 
+# html/pfappserver/root/admin/reports.tt
+msgid "Other reports"
+msgstr ""
+
 # html/pfappserver/root/pfqueue/index.tt
 msgid "Outstanding Task Counters"
 msgstr ""
@@ -4513,6 +4572,11 @@ msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/PortalModule/Authentication.pm
 msgid "PID field"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SMS.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twilio.pm
+msgid "PIN Code Length"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Provisioning.pm
@@ -4671,6 +4735,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LDAP.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/BarracudaNG.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/PKI_Provider/packetfence_pki.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Switch.pm
@@ -4917,12 +4982,12 @@ msgstr ""
 msgid "Please specify the DNS name of the domain"
 msgstr ""
 
-# html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
-msgid "Please specify the DNS server"
-msgstr ""
-
 # html/pfappserver/lib/pfappserver/Form/Config/Network.pm
 msgid "Please specify the DNS server's IP address(es)."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
+msgid "Please specify the DNS server(s)"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Provisioning.pm
@@ -4976,6 +5041,10 @@ msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Iboss.pm
 msgid "Please specify the hostname or IP of the Iboss"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
+msgid "Please specify the hostname or IP of the JSON-RPC server"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/BarracudaNG.pm
@@ -5048,6 +5117,10 @@ msgstr ""
 msgid "Please specify the starting IP address of the DHCP scope."
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
+msgid "Please specify the username for JSON-RPC server"
+msgstr ""
+
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/BarracudaNG.pm
 msgid "Please specify the username for the Barracuda"
 msgstr ""
@@ -5094,6 +5167,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Checkpoint.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/FortiGate.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Iboss.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/PaloAlto.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/WatchGuard.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan/Nessus.pm
@@ -5148,6 +5222,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
@@ -5247,6 +5322,14 @@ msgstr ""
 
 # html/pfappserver/root/config/profile/files.tt
 msgid "Processing..."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Prod 1"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Prod 2"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/PKI_Provider/packetfence_pki.pm
@@ -5786,6 +5869,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Checkpoint.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/FortiGate.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/Iboss.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/PaloAlto.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/WatchGuard.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Provisioning.pm
@@ -6121,6 +6205,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LDAP.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "Scope"
@@ -6201,8 +6286,12 @@ msgstr ""
 msgid "Semicolon"
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Billing.pm
+msgid "Send billing confirmation"
+msgstr ""
+
+# html/pfappserver/root/admin/help.tt
 # html/pfappserver/root/admin/status.tt
-# html/pfappserver/root/admin/wrapper.tt
 msgid "Server"
 msgstr ""
 
@@ -6229,6 +6318,10 @@ msgstr ""
 
 # conf/documentation.conf (alerting.smtpserver)
 msgid "Server through which to send messages to the above emailaddr.  The default is localhost - be sure you're running an SMTP host locally if you don't change it!"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Service FQDN"
 msgstr ""
 
 # html/pfappserver/root/config/wrix/search_form.tt
@@ -6269,7 +6362,7 @@ msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Email.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SponsorEmail.pm
-msgid "Set this value if you want to change the hostname in the validation link."
+msgid "Set this value if you want to change the hostname in the validation link. Changing this requires to restart haproxy."
 msgstr ""
 
 # html/pfappserver/root/config/domain/view.tt
@@ -6293,6 +6386,14 @@ msgstr ""
 
 # conf/documentation.conf (active_active.password)
 msgid "Shared KEY for VRRP protocol (must be the same on all members)."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Shared Secret"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Shared Secret Direct"
 msgstr ""
 
 # conf/documentation.conf (services.dhcpd)
@@ -6586,6 +6687,10 @@ msgstr ""
 msgid "Sponsorship CC"
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Staging"
+msgstr ""
+
 # html/pfappserver/root/admin/nodes.tt
 msgid "Standard Searches"
 msgstr ""
@@ -6653,7 +6758,6 @@ msgstr ""
 # html/pfappserver/root/admin/nodes.tt
 # html/pfappserver/root/admin/wrapper.tt
 # html/pfappserver/root/config/pfdetect/list.tt
-# html/pfappserver/root/config/pfmon/list.tt
 # html/pfappserver/root/configurator/services.tt
 # html/pfappserver/root/node/search.tt
 # html/pfappserver/root/service/status.tt
@@ -6749,6 +6853,10 @@ msgstr ""
 msgid "Successfully dispatched update request for the redis DB. An email will follow for status"
 msgstr ""
 
+# html/pfappserver/root/admin/help.tt
+msgid "Support Inquiry"
+msgstr ""
+
 # conf/documentation.conf (radius_authentication_methods.eap_authentication_types)
 msgid "Supported EAP Authentication Methods"
 msgstr ""
@@ -6803,6 +6911,10 @@ msgstr ""
 
 # html/pfappserver/root/node/search.tt
 msgid "Switch description"
+msgstr ""
+
+# html/pfappserver/root/config/filters/index.tt
+msgid "Switch filters"
 msgstr ""
 
 # html/pfappserver/root/node/tab_Location_view.tt
@@ -6927,6 +7039,22 @@ msgstr ""
 msgid "Template"
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Terminal Group ID"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Terminal Group ID for Mirapay Direct"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Terminal ID"
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Mirapay.pm
+msgid "Terminal ID for Mirapay Direct"
+msgstr ""
+
 # html/pfappserver/root/authentication/source/type/AD.tt
 # html/pfappserver/root/authentication/source/type/LDAP.tt
 # html/pfappserver/root/configurator/database.tt
@@ -6970,11 +7098,11 @@ msgid "The ID of the Switch"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
-msgid "The IP address of the DNS server for this domain."
+msgid "The IP address or DNS name of your Active Directory server"
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
-msgid "The IP address or DNS name of your Active Directory server"
+msgid "The IP address(es) of the DNS server(s) for this domain. Comma delimited if multiple."
 msgstr ""
 
 # conf/documentation.conf (omapi.key_base64)
@@ -7059,8 +7187,9 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SMS.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SponsorEmail.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twilio.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
-msgid "The amount of times, the local account can be used after its created. 0 means infinite."
+msgid "The amount of times, the local account can be used after it is created. 0 means infinite."
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Realm.pm
@@ -7132,10 +7261,11 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/LinkedIn.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twitter.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
-msgid "The hostname must be the one of your captive portal."
+msgid "The hostname must match your hostname and domain parameters set in System Configuration > Main Configuration > General Configuration."
 msgstr ""
 
 # conf/documentation.conf (graphite.db_host)
@@ -7156,6 +7286,11 @@ msgstr ""
 
 # html/pfappserver/root/configurator/services.tt
 msgid "The last step of this configuration wizard is to start the PacketFence daemons."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/SMS.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Twilio.pm
+msgid "The length of the PIN code to be sent over sms"
 msgstr ""
 
 # conf/documentation.conf (database_advanced.max_allowed_packet)
@@ -7184,6 +7319,10 @@ msgstr ""
 
 # html/pfappserver/root/node/create.tt
 msgid "The node will be automatically registered. If the MAC matches an existing node, it will also be modified and registered."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
+msgid "The number of times, the local account can be used after it is created. 0 means infinite."
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
@@ -7226,6 +7365,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Github.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Google.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Instagram.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/OpenID.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/Pinterest.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Authentication/Source/WindowsLive.pm
 msgid "The permissions the application requests."
@@ -7366,7 +7506,7 @@ msgid "The usernames are constructed from the <b>prefix</b> and the <b>quantity<
 msgstr ""
 
 # conf/documentation.conf (active_active.virtual_router_id)
-msgid "The virtual router id for keepalive. Leave untouched unless you have another keepalive cluster in this network."
+msgid "The virtual router id for keepalive. Leave untouched unless you have another keepalive cluster in this network. Must be between 1 and 255."
 msgstr ""
 
 # html/pfappserver/root/service/status.tt
@@ -7728,8 +7868,18 @@ msgstr "Users - Set Access Level"
 
 # pf::admin_roles (Actions groups)
 # pf::admin_roles (Actions)
+msgid "USERS_SET_BANDWIDTH_BALANCE"
+msgstr "Users - Set Bandwidth Balance"
+
+# pf::admin_roles (Actions groups)
+# pf::admin_roles (Actions)
 msgid "USERS_SET_ROLE"
 msgstr "Users - Set Role"
+
+# pf::admin_roles (Actions groups)
+# pf::admin_roles (Actions)
+msgid "USERS_SET_TIME_BALANCE"
+msgstr "Users - Set Time Balance"
 
 # pf::admin_roles (Actions groups)
 # pf::admin_roles (Actions)
@@ -7759,14 +7909,6 @@ msgstr "Users Sources - Update"
 # pf::admin_roles (Actions)
 msgid "USERS_UPDATE"
 msgstr "Users - Update"
-
-# pf::admin_roles (Actions)
-msgid "USERS_SET_TIME_BALANCE"
-msgstr "Users - Set Time Balance"
-
-# pf::admin_roles (Actions)
-msgid "USERS_SET_BANDWIDTH_BALANCE"
-msgstr "Users - Set Bandwidth Balance"
 
 # html/pfappserver/root/config/wrix/search_form.tt
 msgid "UTC Timezone"
@@ -7937,6 +8079,7 @@ msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Domain.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/BarracudaNG.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/PKI_Provider/packetfence_pki.pm
 # html/pfappserver/lib/pfappserver/Form/Config/PortalModule/Authentication/Password.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan.pm
@@ -8046,7 +8189,7 @@ msgstr ""
 # html/pfappserver/lib/pfappserver/Form/Config/Fingerbank/Combination.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Switch.pm
 # html/pfappserver/lib/pfappserver/Form/Node.pm
-# html/pfappserver/root/admin/wrapper.tt
+# html/pfappserver/root/admin/help.tt
 # html/pfappserver/root/node/tab_WMI_process.tt
 msgid "Version"
 msgstr ""
@@ -8454,6 +8597,7 @@ msgid "You must specifiy a gateway address."
 msgstr ""
 
 # html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/BarracudaNG.pm
+# html/pfappserver/lib/pfappserver/Form/Config/Firewall_SSO/JSONRPC.pm
 # html/pfappserver/lib/pfappserver/Form/Config/Scan.pm
 msgid "You must specify the password"
 msgstr ""
@@ -8470,6 +8614,10 @@ msgstr ""
 
 # html/pfappserver/root/configurator/services.tt
 msgid "You will now be redirected to the administration interface where you can configure violations and monitor your new NAC."
+msgstr ""
+
+# html/pfappserver/lib/pfappserver/PacketFence/Controller/Config/Profile.pm
+msgid "Your Tier Description"
 msgstr ""
 
 # html/pfappserver/root/configurator/networks.tt
@@ -8773,6 +8921,14 @@ msgstr "Status URI only on production network"
 msgid "captive_portal.wispr_redirection"
 msgstr "WISPr redirection capabilities"
 
+# conf/documentation.conf
+msgid "captive_portal.rate_limiting"
+msgstr "Rate limiting"
+
+# conf/documentation.conf
+msgid "captive_portal.rate_limiting_threshold"
+msgstr "Rate limiting threshold"
+
 # html/pfappserver/lib/pfappserver/Form/User.pm
 # html/pfappserver/root/admin/users.tt
 msgid "cell_phone"
@@ -8960,6 +9116,7 @@ msgstr "Deny"
 msgid "department"
 msgstr ""
 
+# html/pfappserver/lib/pfappserver/PacketFence/Controller/Config/Profile.pm
 # pf::Authentication::Source::ADSource (available_attributes)
 # pf::Authentication::Source::LDAPSource (available_attributes)
 # pfappserver::PacketFence::Controller::Graph (os fields)
@@ -8969,6 +9126,10 @@ msgstr ""
 # conf/documentation.conf
 msgid "device_registration"
 msgstr "Device registration"
+
+# conf/documentation.conf
+msgid "device_registration.allowed_devices"
+msgstr "Allowed devices"
 
 # conf/documentation.conf
 msgid "device_registration.role"
@@ -10326,11 +10487,11 @@ msgstr "httpd path"
 
 # conf/documentation.conf
 msgid "services.httpd_collector"
-msgstr ""
+msgstr "httpd collector"
 
 # conf/documentation.conf
 msgid "services.httpd_dispatcher"
-msgstr ""
+msgstr "httpd dispatcher"
 
 # conf/documentation.conf
 msgid "services.httpd_graphite"
@@ -10338,7 +10499,7 @@ msgstr "httpd.graphite"
 
 # conf/documentation.conf
 msgid "services.httpd_parking"
-msgstr ""
+msgstr "httpd parking"
 
 # conf/documentation.conf
 msgid "services.httpd_portal"
@@ -10414,7 +10575,7 @@ msgstr "pfsetvlan"
 
 # conf/documentation.conf
 msgid "services.pfsso"
-msgstr ""
+msgstr "pfsso"
 
 # conf/documentation.conf
 msgid "services.radiusd"
@@ -10450,11 +10611,11 @@ msgstr "redis_queue"
 
 # conf/documentation.conf
 msgid "services.routes"
-msgstr ""
+msgstr "routes"
 
 # conf/documentation.conf
 msgid "services.routes_binary"
-msgstr ""
+msgstr "routes path"
 
 # conf/documentation.conf
 msgid "services.snmptrapd"
@@ -10489,20 +10650,20 @@ msgid "set_access_level"
 msgstr "Access level"
 
 # pf::Authentication::constants (Actions)
-msgid "set_role"
-msgstr "Role"
+msgid "set_bandwidth_balance"
+msgstr "Bandwidth balance"
 
 # pf::Authentication::constants (Actions)
-msgid "set_unreg_date"
-msgstr "Unregistration date"
+msgid "set_role"
+msgstr "Role"
 
 # pf::Authentication::constants (Actions)
 msgid "set_time_balance"
 msgstr "Time balance"
 
 # pf::Authentication::constants (Actions)
-msgid "set_bandwidth_balance"
-msgstr "Bandwidth balance"
+msgid "set_unreg_date"
+msgstr "Unregistration date"
 
 # conf/documentation.conf (snmp_traps.trap_limit_action options)
 msgid "shut"
@@ -10713,6 +10874,7 @@ msgstr "User Name"
 # pf::Authentication::Source::MirapaySource (available_attributes)
 # pf::Authentication::Source::NullSource (available_attributes)
 # pf::Authentication::Source::OAuthSource (available_attributes)
+# pf::Authentication::Source::OpenIDSource (available_attributes)
 # pf::Authentication::Source::PaypalSource (available_attributes)
 # pf::Authentication::Source::PinterestSource (available_attributes)
 # pf::Authentication::Source::RADIUSSource (available_attributes)
@@ -10791,7 +10953,4 @@ msgstr ""
 # html/pfappserver/root/config/profile/files.tt
 msgid "{percent}% of {total_size}"
 msgstr ""
-
-msgid "multi_source_ids"
-msgstr "sources"
 

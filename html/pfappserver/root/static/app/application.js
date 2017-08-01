@@ -79,9 +79,9 @@ function getStatusMsg(jqXHR) {
     return status_msg;
 }
 
-function resetAlert(parent) {
-    parent.children('.alert').clearQueue().remove();
-    parent.children('.error').removeClass('error');
+function resetAlert(p) {
+    p.find('.alert').clearQueue().remove();
+    p.find('.error').removeClass('error');
 }
 
 
@@ -125,7 +125,16 @@ function showError(sibling, msg, permanent, time) {
         var form = sibling.closest('form');
         $.each(msg, function(name, error) {
             var input = form.find('[name="' + name + '"]');
-            var control = input.closest('.control-group');
+            var control;
+            if (input.length) {
+                control = input.closest('.control-group');
+            } else {
+                control = form.find('[id="' + name + '"].control-group:not(.hidden)');
+            }
+            if (!control.length) {
+                var label = form.find('.control-group:not(.hidden) > label[for="' + name + '"].control-label');
+                control = label.closest('.control-group');
+            }
             control.addClass('error');
             showTab(control, input);
             showCollapse(input);

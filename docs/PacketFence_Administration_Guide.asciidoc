@@ -501,6 +501,7 @@ PacketFence can authenticate users that register devices via the captive portal 
 * LDAP
 * LinkedIn (OAuth 2)
 * Null
+* OpenID Connect (OAuth 2)
 * Pinterest (OAuth 2)
 * RADIUS
 * SMS
@@ -2163,7 +2164,7 @@ NOTE: OAuth2 authentication does not work with Webauth enforcement
 
 NOTE: OAuth2 authentication will fail by design when previewed through "Connection Profiles"  
 
-The captive portal of PacketFence allows a guest/user to register using his Google, Facebook, LinkedIn, Windows Live, Twitter, Instagram, Pinterest or Github account.
+The captive portal of PacketFence allows a guest/user to register using his Google, Facebook, LinkedIn, Windows Live, Twitter, Instagram, Pinterest, OpenID Connect or Github account.
 
 For each providers, we maintain an allowed domain list to punch holes into the firewall so the user can hit the provider login page.
 This list is available in each OAuth2 authentication source.
@@ -2234,6 +2235,20 @@ Once you have your information, you need to configure the OAuth2 provider. This 
 Moreover, don't forget to add LinkedIn as a registration mode from your connection profile definition, available from *Configuration -> Policies and Access Control -> Connection Profiles and Pages*.
 
 Also, LinkedIn requires a 'state' parameter for the authorization URL. If you modify it, make sure to add it at the end of your URL.
+
+OpenID Connect
+^^^^^^^^^^^^^^
+Using OpenID Connect is a bit different than other OAuth2 sources. The reason behind that is because you will setup your own OpenID Connect source or depend on a provider for it. Configuration like token path, authorize path or API URL are specific to your setup. For more information on how to create your own or get a host please visit: http://openid.net/connect/. 
+
+When you create your App, make sure you specify the following as the Callback URL, https://YOUR_PORTAL_HOSTNAME/oauth2/callback. 
+
+Of course, replace the hostname with the values from `general.hostname` and `general.domain`.
+
+OpenID connect have different ways to be configured, make sure to create a client ID and a client secret to work with PacketFence.
+
+Once you have your information, you need to configure the OAuth2 provider. This can be done by adding an OpenID OAuth2 authentication source from *Configuration -> Policies and Access Control -> Sources*.
+
+Moreover, don't forget to add OpenID as a registration mode from your connection profile definition, available from *Configuration -> Policies and Access Control -> Connection Profiles and Pages*.
 
 Pinterest
 ^^^^^^^^^
@@ -4282,7 +4297,7 @@ When dealing with a large database, the database backup and maintenance script (
 
 This is fixed easily by using Percona XtraBackup which can complete a full database backup without locking your tables.
 
-The installation instructions below are made for CentOS 6 but adjusting them to CentOS 7 or Debian should only be a matter of installing the proper packages for your MySQL/MariaDB version.
+The installation instructions below are made for CentOS 7 but adjusting them to Debian should only be a matter of installing the proper packages for your MySQL/MariaDB version.
 
 First install the Percona repository:
 
@@ -4294,9 +4309,7 @@ Make sure to disable the newly installed repository not to interfere with future
 
 Next, install Percona XtraBackup by manually specifying the Percona repository:
 
-  # yum install percona-xtrabackup-20 --enablerepo=percona-release-`uname -m`
-
-NOTE: A more recent version of Percona XtraBackup can be used but only if you are running a recent version of MySQL.
+  # yum install percona-xtrabackup --enablerepo=percona-release-`uname -m`
 
 Once this is done, grant the proper rights to the `pf` user (or the one you configured in pf.conf):
 
@@ -4475,12 +4488,12 @@ We will now stop MySQL, move the existing data directory and replace it by the d
 
 NOTE: On Debian the service will be called `mysql` and on CentOS 7 `mariadb`. Make sure you adjust the commands above to your environment.
 
-  # service mysqld stop
+  # service packetfence-mariadb stop
   # mv /var/lib/mysql /var/lib/mysql.bak
   # mkdir /var/lib/mysql
   # mv * /var/lib/mysql
   # chown -R mysql: /var/lib/mysql
-  # service mysqld start
+  # service packetfence-mariadb start
 
 Should the service fail to start, make sure you look into the MySQL error logs.
 

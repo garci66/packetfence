@@ -62,6 +62,76 @@ function updateAction(type, keep_value) {
     changeInputFromTemplate(value, $('#' + action + '_action'), keep_value);
 }
 
+/* Update a rule condition input field depending on the type of the selected attribute */
+function updateCondition(attribute) {
+    var type = attribute.find(':selected').attr('data-type');
+    var operator = attribute.next();
+
+    if (type != operator.attr('data-type')) {
+        // Disable fields to be replaced
+        var value = operator.next();
+        operator.attr('disabled', 1);
+        value.attr('disabled', 1);
+
+        // Replace operator field
+        var operator_new = $('#' + type + '_operator').clone();
+        $.each(["id", "name", "data-required"], function(i, attr) {
+            operator_new.attr(attr, operator.attr(attr));
+        });
+        operator_new.insertBefore(operator);
+
+        // Replace value field
+        var value_new = $('#' + type + '_value').clone();
+        $.each(["id", "name", "data-required"], function(i, attr) {
+            value_new.attr(attr, value.attr(attr));
+        });
+        value_new.insertBefore(value);
+
+        if (!operator.attr('data-type')) {
+            // Preserve values of an existing condition
+            operator_new.val(operator.val());
+            value_new.val(value.val());
+        }
+
+        // Remove previous fields
+        value.remove();
+        operator.remove();
+
+        // Remember the data type
+        operator_new.attr('data-type', type);
+
+        // Initialize rendering widgets
+        initWidgets(value_new);
+    }
+}
+
+/* Update a rule condition input field depending on the type of the selected attribute */
+function updateSoureRuleCondition(attribute, keep) {
+    var type = attribute.find(':selected').attr('data-type');
+    var operator = attribute.next();
+
+    if (type != operator.attr('data-type')) {
+        // Disable fields to be replaced
+        var value = operator.next();
+        var op_id = "#" + escapeJqueryId(operator.attr("id"));
+        operator.attr('disabled', 1);
+        value.attr('disabled', 1);
+
+        // Replace operator field
+        var operator_template = $('#' + type + '_operator');
+        changeInputFromTemplate(operator, operator_template, keep);
+
+        // Replace value field
+        var value_template = $('#' + type + '_value');
+        changeInputFromTemplate(value, value_template, keep);
+
+        // Remember the data type
+        $(op_id).attr('data-type', type);
+
+    }
+}
+
+
 function escapeJqueryId( myid ) {
     return myid.replace( /(:|\.|\[|\]|,|=|\\)/g, "\\$1" );
 }
@@ -95,8 +165,8 @@ function changeInputFromTemplate(oldInput, template, keep_value) {
  * Initialize the rendering widgets of some elements
  */
 function initWidgets(elements) {
-    elements.filter('.chzn-select').chosen();
-    elements.filter('.chzn-deselect').chosen({allow_single_deselect: true});
+    elements.filter('.chzn-select').chosen({width: ''});
+    elements.filter('.chzn-deselect').chosen({allow_single_deselect: true, width: ''});
     elements.filter('.timepicker-default').each(function() {
         // Keep the placeholder visible if the input has no value
         var defaultTime = $(this).val().length? 'value' : false;
@@ -745,6 +815,7 @@ $(function () { // DOM ready
                     var element = $(e);
                     dynamic_list_update_all_attributes(element, base_id, i);
                 });
+                wrapper.trigger('dynamic-list.ordered');
             }
         });
     });
@@ -1034,24 +1105,39 @@ $(function () { // DOM ready
     if (typeof init == 'function') init();
     if (typeof initModals == 'function') initModals();
 
-    $('#checkup_dropdown_toggle').click(function () {
-      var li;
-      if($(this).closest('li').hasClass('open')) {
+    $('#checkup_task_toggle').click(function (e) {
+        e.preventDefault();
+        $( ".checkup_results" ).remove();
+        $('<li class="checkup_results disabled"><div class="text-center"><i class="icon-spin icon-circle-o-notch"></i></div></li>').insertAfter($(this).parent());
         $.get("/admin/checkup", function(data){
-          var dropdown = $('#checkup_dropdown');
-          dropdown.html('');
-          if(data.items.problems.length > 0){
-            for(var i in data.items.problems){
-              li = $('<li class="disabled"><a href="#">'+data.items.problems[i].severity+' : '+data.items.problems[i].message+'</a></li>');
-              dropdown.append(li);
+            var results = $(".checkup_results");
+            var li;
+            results.html('<a href="#" disabled>Result(s):</a>');
+            if(data.items.problems.length > 0){
+                for(var i in data.items.problems){
+                    li = $('<li class="checkup_results disabled"><a href="#" disabled>'+data.items.problems[i].severity+' : '+data.items.problems[i].message+'</a></li>');
+                    li.insertAfter(results);
+                }
+            } else {
+                li = $('<li class="checkup_results disabled"><a href="#" disabled>No problem detected!</a></li>');
+                li.insertAfter(results);
             }
-          }
-          else{
-            li = $('<li class="disabled"><a href="#">No problem detected !</a></li>');
-            dropdown.append(li);
-          }
         });
-      }
+        return false;
+    });
+
+    $('#fixpermissions_task_toggle').click(function (e) {
+        e.preventDefault();
+        $( ".fixpermissions_results" ).remove();
+        $('<li class="fixpermissions_results disabled"><div class="text-center"><i class="icon-spin icon-circle-o-notch"></i></div></li>').insertAfter($(this).parent());
+        $.get("/admin/fixpermissions", function(data){
+            var results = $(".fixpermissions_results");
+            var li;
+            results.html('<a href="#" disabled>Result(s):</a>');
+            li = $('<li class="fixpermissions_results disabled"><a href="" disabled>Fixed permissions !</a></li>');
+            li.insertAfter(results);
+        });
+        return false;
     });
 
     $('#section').on('show', '.modal', function(e) {
@@ -1101,7 +1187,6 @@ FingerbankSearch.prototype.model_stripped = function() {
 FingerbankSearch.prototype.search = function(query, process) {
   var that = this;
   var path = this.model_stripped();
-  console.log(path);
   $.ajax({
       type: 'POST',
       url: '/config/fingerbank/'+path+'/typeahead_search',
@@ -1153,7 +1238,6 @@ FingerbankSearch.setup = function() {
           e.preventDefault();
           var id;
           var display;
-          console.log(search);
           $.each(search.results, function(){
             if(this.display == search.typeahead_field.val()){
               id = this.id;
@@ -1166,7 +1250,7 @@ FingerbankSearch.setup = function() {
           else {
             if(display !== undefined) {
                 search.add_to.append('<option selected="selected" value="'+id+'">'+display+'</option>');
-                search.add_to.trigger("liszt:updated");
+                search.add_to.trigger("chosen:updated");
             }
           }
           search.typeahead_field.val('');

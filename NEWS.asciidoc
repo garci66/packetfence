@@ -11,6 +11,68 @@ This is a list of noteworthy changes across releases.
 For more details and developer visible changes see the ChangeLog file.
 For a list of compatibility related changes see the UPGRADE.asciidoc file.
 
+Version X.Y.Z released on 2017-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New Features
+++++++++++++
+
+Enhancements
+++++++++++++
+
+* Display vlan in locationlog view
+
+Bug Fixes
++++++++++
+
+* Move the syslog parser from the section Compliance to Integration in the menu of the WebAdmin (#2467)
+
+
+Version 7.2.0 released on 2017-07-10
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New Features
+++++++++++++
+
+* Added support for authenticating users through OpenID Connect (PR #2394)
+* Added passthroughs for devices in violation state (isolation network) (PR #2328)
+* Added ability to report a device lost or stolen in self-service portal (PR #2337)
+* Added ability to change a local account password in self-service portal (PR #2337)
+* Improved overall user experience of self-service portal (PR #2337)
+
+Enhancements
+++++++++++++
+
+* Use the attributes returned by a radius use source as attributes to compute the rules (PR #2369)
+* Most services now support systemd sd_notify notifications.
+* The GUI will now only display readonly actions in readonly mode (PR #2384)
+* Journald total file size is now capped at 1Gb (PR #2389)
+* The GUI will now allow sources to be cloned (PR #2395)
+* The GUI now visually splits Administration and Authentication rules when viewing sources (PR #2395)
+* The GUI now has the ability to run "fixpermissions" from the web admin GUI (PR #2398)
+* haproxy captive portal rate-limiting is now configurable (PR #2422)
+* winbindd will now use the regular samba mechanisms to locate and select DCs (PR #2410)
+* New pfcmd command pfcmd pfqueue clear_expired_counters to clear the expired task counters (PR #2433)
+* Allow to disable the captive portal haproxy abuse access lists (#2418)
+
+Bug Fixes
++++++++++
+
+* Added a cleanup of the number in the SMS source (#1966)
+* TLS certificates and keys will no longer be overwritten (#2366)
+* Limit the amount of tasks a worker processes to avoid memory from growing
+* Fixed a case where the REJECT role isn't honored in inline and some web-auth (#2383)
+* Sponsor authentication CC address is now BCC to help preserve privacy (#2267)
+* Use plain HTTP for network access detection page (#2393)
+* Fixed an issue where DHCP broadcast were treated more than once in clustered mode (PR #2413) (#2408)
+* Fixed incorrect user login remaining count display (#2450)
+* Fixed a case where pfqueue counters show a count of 0 although queue is full (#2420)
+* node_discovered is no longer triggered when node hasn't been created in DB (#2436)
+* Detect date was not being populated when nodes were discovered via radius (#2424)
+* Fixed leftover httpd processes when restarting (#2439)
+* Mariadb binary logs files are now properly rotated (#2440)
+* Fixed scss settings and colors being wiped on each upgrade (#2317)
+
 Version 7.1.0 released on 2017-06-01
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

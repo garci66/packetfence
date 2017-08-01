@@ -108,7 +108,7 @@ var NodeView = function(options) {
 
     this.proxyFor(body, 'section.loaded', '#section', function(e) {
         /* Disable checked columns from import tab since they are required */
-        $('form[nodes] .columns :checked').attr('disabled', 'disabled');
+        $('form[name="nodes"] .columns :checked').attr('disabled', 'disabled');
     });
     this.proxyFor(body, 'saved_search.loaded', 'form[name="advancedNodeSearch"] [name$=".name"]', this.changeSearchFieldKeep);
 
@@ -154,8 +154,8 @@ NodeView.prototype.readNode = function(e) {
 NodeView.prototype.showNode = function(e) {
     var that = this;
     var modal = $("#modalNode");
-    modal.find('.chzn-select').chosen();
-    modal.find('.chzn-deselect').chosen({allow_single_deselect: true});
+    modal.find('.chzn-select').chosen({width: ''});
+    modal.find('.chzn-deselect').chosen({allow_single_deselect: true, width: ''});
     modal.find('.timepicker-default').each(function() {
         // Keep the placeholder visible if the input has no value
         var $this = $(this);
@@ -166,7 +166,8 @@ NodeView.prototype.showNode = function(e) {
             e.stopPropagation();
         });
     });
-    modal.find('.datepicker').datepicker({ autoclose: true });
+    modal.find('.input-date').datepicker({ autoclose: true });
+
     modal.find('[data-toggle="tooltip"]').tooltip({placement: 'right'}).click(function(e) {
         e.preventDefault();
         return false;

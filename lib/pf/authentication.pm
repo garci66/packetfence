@@ -72,6 +72,7 @@ BEGIN {
             getAuthenticationSource
             getAllAuthenticationSources
             deleteAuthenticationSource
+            getAuthenticationClassByType
             %guest_self_registration
        );
 }
@@ -246,15 +247,15 @@ sub authenticate {
 
     my $message;
     foreach my $current_source (@sources) {
-        my ($result, $message);
+        my ($result, $message, $extra);
         $logger->trace("Trying to authenticate '$display_username' with source '".$current_source->id."'");
         eval {
-            ($result, $message) = $current_source->authenticate($username, $password);
+            ($result, $message, $extra) = $current_source->authenticate($username, $password);
         };
         # First match wins!
         if ($result) {
             $logger->info("Authentication successful for $display_username in source ".$current_source->id." (".$current_source->type.")");
-            return ($result, $message, $current_source->id);
+            return ($result, $message, $current_source->id, $extra);
         }
     }
 
@@ -279,7 +280,7 @@ our %ACTION_VALUE_FILTERS = (
 
 sub match {
     my $timer = pf::StatsD::Timer->new();
-    my ($source_id, $params, $action, $source_id_ref) = @_;
+    my ($source_id, $params, $action, $source_id_ref, $extra) = @_;
     my ($actions, @sources);
     $logger->debug( sub { "Match called with parameters ".join(", ", map { "$_ => $params->{$_}" } keys %$params) });
     if( defined $action && !exists $Actions::ALLOWED_ACTIONS{$action}) {
@@ -304,7 +305,7 @@ sub match {
     $logger->info("Using sources ".join(', ', (map {$_->id} @sources))." for matching");
 
     foreach my $source (@sources) {
-        $actions = $source->match($params, $action);
+        $actions = $source->match($params, $action, $extra);
         unless (defined $actions) {
             $logger->trace(sub {"Skipped " . $source->id });
             next;
@@ -357,7 +358,7 @@ If there is a match hash will be returned with the following information
 
 sub match2 {
     my $timer = pf::StatsD::Timer->new();
-    my ($source_id, $params) = @_;
+    my ($source_id, $params, $extra) = @_;
     my ($actions, @sources);
     $logger->debug( sub { "Match called with parameters ".join(", ", map { "$_ => $params->{$_}" } keys %$params) });
 
@@ -378,7 +379,7 @@ sub match2 {
     $logger->info("Using sources ".join(', ', (map {$_->id} @sources))." for matching");
 
     foreach my $source (@sources) {
-        $actions = $source->match($params);
+        $actions = $source->match($params, undef, $extra);
         next unless defined $actions;
         my %values;
         foreach my $action (@$actions) {
@@ -397,6 +398,21 @@ sub match2 {
     }
 
     return undef;
+}
+
+=item getAuthenticationClassByType
+
+Get the authentication class by it's type
+
+=cut
+
+sub getAuthenticationClassByType {
+    my ($type) = @_;
+    $type = lc($type);
+    if (!exists $TYPE_TO_SOURCE{$type}) {
+        return undef;
+    }
+    return $TYPE_TO_SOURCE{$type}->meta->find_attribute_by_name('class')->default;
 }
 
 =back
