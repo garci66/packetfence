@@ -76,13 +76,15 @@ sub authenticationLogin : Private {
     my $profile = $c->profile;
     my $portalSession = $c->portalSession;
     my $mac           = $portalSession->clientMac;
-    my ( $return, $message, $source_id, $extra );
+    my ( $return, $message, $source_id );
     $logger->debug("authentication attempt");
 
     if ($request->{'match'} eq "status/login") {
         use pf::person;
         my $person_info = pf::person::person_view($request->param("username"));
         my $source = pf::authentication::getAuthenticationSource($person_info->{source});
+        $logger->info(sub { use Data::Dumper ; "status/login attempt: ".Dumper($person_info)});
+        $logger->info(sub { use Data::Dumper ; "status/login attempt: ".Dumper($source)});
         if (defined($source) && $source->{'class'} eq 'external') {
             # Source is external, we have to use local source to authenticate
             $c->stash( use_local_source => 1 );
@@ -124,7 +126,7 @@ sub authenticationLogin : Private {
         $c->user_session->{source_match} = \@sources;
     } else {
         # validate login and password
-        ( $return, $message, $source_id, $extra ) =
+        ( $return, $message, $source_id ) =
           pf::authentication::authenticate( { 'username' => $username, 'password' => $password, 'rule_class' => $Rules::AUTH }, @sources );
         if ( defined($return) && $return == 1 ) {
             pf::auth_log::record_auth($source_id, $portalSession->clientMac, $username, $pf::auth_log::COMPLETED);

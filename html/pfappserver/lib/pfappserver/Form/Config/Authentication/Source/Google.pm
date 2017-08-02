@@ -88,7 +88,7 @@ has_field 'redirect_url' =>
    element_attr => {'placeholder' => pf::Authentication::Source::GoogleSource->meta->get_attribute('redirect_url')->default,},
    element_class => ['input-xlarge'],
    tags => { after_element => \&help,
-             help => 'The hostname must match your hostname and domain parameters set in System Configuration > Main Configuration > General Configuration.' },
+             help => 'The hostname must be the one of your captive portal.' },
   );
 has_field 'domains' =>
   (
@@ -99,7 +99,16 @@ has_field 'domains' =>
    element_attr => {'placeholder' => pf::Authentication::Source::GoogleSource->meta->get_attribute('domains')->default},
    element_class => ['input-xlarge'],
    tags => { after_element => \&help,
-             help => 'Comma-separated list of domains that will be resolved with the correct IP addresses.' },
+             help => 'Comma separated list of domains that will be resolve with the correct IP addresses.' },
+  );
+has_field 'hosted_domain' =>
+  (
+   type => 'Text',
+   label => 'Google domain',
+   required => 1,
+   element_class => ['input-xlarge'],
+   tags => { after_element => \&help,
+             help => 'Google hosted domain to restrict the login info to. Will only present accounts from this domain on Google\'s login screen' },
   );
 
 has_field 'create_local_account' => (
@@ -120,7 +129,7 @@ has_field 'local_account_logins' => (
     default => pf::Authentication::Source::GoogleSource->meta->get_attribute('local_account_logins')->default,
     tags => {
         after_element => \&help_list,
-        help => 'The amount of times, the local account can be used after it is created. 0 means infinite.'
+        help => 'The amount of times, the local account can be used after its created. 0 means infinite.'
     },
 );
 
