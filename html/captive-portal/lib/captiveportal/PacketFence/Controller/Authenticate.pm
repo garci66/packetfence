@@ -83,8 +83,7 @@ sub authenticationLogin : Private {
         use pf::person;
         my $person_info = pf::person::person_view($request->param("username"));
         my $source = pf::authentication::getAuthenticationSource($person_info->{source});
-        $logger->info(sub { use Data::Dumper ; "status/login attempt: ".Dumper($person_info)});
-        $logger->info(sub { use Data::Dumper ; "status/login attempt: ".Dumper($source)});
+        $logger->debug(sub { use Data::Dumper ; "status/login attempt: ".Dumper($source)});
         if (defined($source) && $source->{'class'} eq 'external') {
             # Source is external, we have to use local source to authenticate
             $c->stash( use_local_source => 1 );
