@@ -38,8 +38,8 @@ use pf::config qw (
 );
 use pf::util::radius qw(perform_disconnect);
 use pf::log;
-use pf::util::wpa;
-use Crypt::PBKDF2;
+#use pf::util::wpa;
+#use Crypt::PBKDF2;
 use Data::Dumper;
 
 sub description { 'Ruckus SmartZone Wireless Controllers' }
@@ -311,14 +311,15 @@ Generates the RADIUS attribute value for Ruckus-DPSK given an SSID name and the 
 =cut
 
 sub generate_dpsk_attribute_value {
-    my ($self, $ssid, $dpsk) = @_;
-
-    my $pbkdf2 = Crypt::PBKDF2->new(
-        iterations => 4096,
-        output_len => 32,
-    );
-     
-    my $hash = $pbkdf2->PBKDF2_hex($ssid, $dpsk);
+#    my ($self, $ssid, $dpsk) = @_;
+#
+#    my $pbkdf2 = Crypt::PBKDF2->new(
+#        iterations => 4096,
+#        output_len => 32,
+#    );
+#     
+#    my $hash = $pbkdf2->PBKDF2_hex($ssid, $dpsk);
+    my $hash="";
     return "0x00".$hash;
 }
 
@@ -352,22 +353,22 @@ sub find_user_by_psk {
 }
 
 sub check_if_radius_request_psk_matches {
-    my ($self, $radius_request, $psk) = @_;
-    if($radius_request->{"Ruckus-DPSK-Cipher"} != 4) {
-        get_logger->error("Ruckus-DPSK-Cipher isn't for WPA2 that uses AES and HMAC-SHA1. This isn't supported by this module.");
-        return $FALSE;
-    }
+#    my ($self, $radius_request, $psk) = @_;
+#    if($radius_request->{"Ruckus-DPSK-Cipher"} != 4) {
+#        get_logger->error("Ruckus-DPSK-Cipher isn't for WPA2 that uses AES and HMAC-SHA1. This isn't supported by this module.");
+#        return $FALSE;
+#    }#
 
-    return pf::util::wpa::match_mic(
-      pf::util::wpa::calculate_ptk(
-        pf::util::wpa::calculate_pmk($radius_request->{"Ruckus-Wlan-Name"}, $psk),
-        pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-BSSID"})),
-        pack("H*", $radius_request->{"User-Name"}),
-        pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-DPSK-Anonce"})),
-        pf::util::wpa::snonce_from_eapol_key_frame(pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-DPSK-EAPOL-Key-Frame"}))),
-      ),      
-      pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-DPSK-EAPOL-Key-Frame"})),
-    );
+#    return pf::util::wpa::match_mic(
+#      pf::util::wpa::calculate_ptk(
+#        pf::util::wpa::calculate_pmk($radius_request->{"Ruckus-Wlan-Name"}, $psk),
+#        pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-BSSID"})),
+#        pack("H*", $radius_request->{"User-Name"}),
+#        pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-DPSK-Anonce"})),
+#        pf::util::wpa::snonce_from_eapol_key_frame(pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-DPSK-EAPOL-Key-Frame"}))),
+#      ),      
+#      pack("H*", pf::util::wpa::strip_hex_prefix($radius_request->{"Ruckus-DPSK-EAPOL-Key-Frame"})),
+#    );
 }
 
 =back
